@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="7b56f539-3b04-4935-aae2-015fd554f9b3" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="fa0120e3-59a8-4762-a6ba-b4476be7c28d" name="Default Changelist" comment="" />
+>>>>>>> b61ca0d518a6a41812b8a272df0be8f6634e7568
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +17,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectId" id="2sFKlEPfFQwPRDeTTi36C0xXNfy" />
+=======
+  <component name="ProjectId" id="2sFLJstfhgHbfeww1EjYM7fXCLw" />
+>>>>>>> b61ca0d518a6a41812b8a272df0be8f6634e7568
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -31,11 +39,19 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="7b56f539-3b04-4935-aae2-015fd554f9b3" name="Default Changelist" comment="" />
       <created>1738046031612</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1738046031612</updated>
+=======
+      <changelist id="fa0120e3-59a8-4762-a6ba-b4476be7c28d" name="Default Changelist" comment="" />
+      <created>1738046308021</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738046308021</updated>
+>>>>>>> b61ca0d518a6a41812b8a272df0be8f6634e7568
     </task>
     <servers />
   </component>
