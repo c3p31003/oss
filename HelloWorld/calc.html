@@ -1,21 +1,73 @@
-<meta charset="UTF-8">
-<html>
-<script>
-function calc()
-{
-	const input1=document.getElementById ("input1").value;
-	const input2=document.getElementById ("input2").value;
-
-	const answer=Number(input1)+Number(input2);
-	document.getElementById ("input3").value=answer;
-	//alert(answer);
-}
-</script>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>電卓</title>
+    <style>
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 200px;
+            margin: 0 auto;
+        }
+        .calculator input {
+            grid-column: span 4;
+            text-align: right;
+            padding: 10px;
+            font-size: 20px;
+        }
+        .calculator button {
+            padding: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
 <body>
-<div>Hello world</div>
-<input type="text" id="input1" placeholder="入力フィールド1">
-<input type="text" id="input2" placeholder="入力フィールド2">
-<input type="text" id="input3" placeholder="出力フィールド1">
-<button onclick="calc();"> calc </button>
+<div class="calculator">
+    <input type="text" id="inputField" readonly placeholder="0">
+    <button onclick="appendNumber(7)">7</button>
+    <button onclick="appendNumber(8)">8</button>
+    <button onclick="appendNumber(9)">9</button>
+    <button onclick="appendOperator('+')">+</button>
+    <button onclick="appendNumber(4)">4</button>
+    <button onclick="appendNumber(5)">5</button>
+    <button onclick="appendNumber(6)">6</button>
+    <button onclick="appendOperator('-')">-</button>
+    <button onclick="appendNumber(1)">1</button>
+    <button onclick="appendNumber(2)">2</button>
+    <button onclick="appendNumber(3)">3</button>
+    <button onclick="appendOperator('*')">*</button>
+    <button onclick="appendNumber(0)">0</button>
+    <button onclick="clearInput()">C</button>
+    <button onclick="calculateResult()">=</button>
+    <button onclick="appendOperator('/')">/</button>
+</div>
+<script>
+    let currentInput = '';
+    function appendNumber(number) {
+        currentInput += number;
+        document.getElementById('inputField').value = currentInput;
+    }
+    function appendOperator(operator) {
+        currentInput += ' ' + operator + ' ';
+        document.getElementById('inputField').value = currentInput;
+    }
+    function clearInput() {
+        currentInput = '';
+        document.getElementById('inputField').value = '0';
+    }
+    function calculateResult() {
+        try {
+            const result = eval(currentInput);
+            document.getElementById('inputField').value = result;
+            currentInput = result.toString();
+        } catch (e) {
+            document.getElementById('inputField').value = 'エラー';
+            currentInput = '';
+        }
+    }
+</script>
 </body>
 </html>
