@@ -4,68 +4,138 @@
     <meta charset="UTF-8">
     <title>電卓</title>
     <style>
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        input {
+            width: 150px;
+            padding: 10px;
+            font-size: 18px;
+            margin: 10px;
+        }
         .calculator {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            width: 200px;
+            max-width: 200px;
             margin: 0 auto;
         }
-        .calculator input {
-            grid-column: span 4;
-            text-align: right;
-            padding: 10px;
-            font-size: 20px;
-        }
-        .calculator button {
+        button {
             padding: 20px;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
-<div class="calculator">
-    <input type="text" id="inputField" readonly placeholder="0">
-    <button onclick="appendNumber(7)">7</button>
-    <button onclick="appendNumber(8)">8</button>
-    <button onclick="appendNumber(9)">9</button>
-    <button onclick="appendOperator('+')">+</button>
-    <button onclick="appendNumber(4)">4</button>
-    <button onclick="appendNumber(5)">5</button>
-    <button onclick="appendNumber(6)">6</button>
-    <button onclick="appendOperator('-')">-</button>
-    <button onclick="appendNumber(1)">1</button>
-    <button onclick="appendNumber(2)">2</button>
-    <button onclick="appendNumber(3)">3</button>
-    <button onclick="appendOperator('*')">*</button>
-    <button onclick="appendNumber(0)">0</button>
-    <button onclick="clearInput()">C</button>
-    <button onclick="calculateResult()">=</button>
-    <button onclick="appendOperator('/')">/</button>
+<div class="container">
+    <input type="text" id="input1" placeholder="入力フィールド1" readonly>
+    <input type="text" id="input2" placeholder="演算子" readonly>
+    <input type="text" id="input3" placeholder="入力フィールド2" readonly>
+    <input type="text" id="input4" placeholder="出力フィールド" readonly>
+    <button onclick="calc();">計算</button>
+    <div class="calculator">
+        <button onclick="appendNumber(7)">7</button>
+        <button onclick="appendNumber(8)">8</button>
+        <button onclick="appendNumber(9)">9</button>
+        <button onclick="appendOperator('+')">+</button>
+        <button onclick="appendNumber(4)">4</button>
+        <button onclick="appendNumber(5)">5</button>
+        <button onclick="appendNumber(6)">6</button>
+        <button onclick="appendOperator('-')">-</button>
+        <button onclick="appendNumber(1)">1</button>
+        <button onclick="appendNumber(2)">2</button>
+        <button onclick="appendNumber(3)">3</button>
+        <button onclick="appendOperator('*')">*</button>
+        <button onclick="appendNumber(0)">0</button>
+        <button onclick="clearInput()">C</button>
+        <button onclick="calculateResult()">=</button>
+        <button onclick="appendOperator('/')">/</button>
+    </div>
 </div>
 <script>
-    let currentInput = '';
+    function calc() {
+        const input1 = document.getElementById("input1").value;
+        const input2 = document.getElementById("input2").value;
+        const input3 = document.getElementById("input3").value;
+        // 入力が数字の場合のみ計算
+        if (input1 && input2 && input3) {
+            let num1 = parseFloat(input1);
+            let num2 = parseFloat(input3);
+            let result;
+            switch(input2) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = 'エラー';
+            }
+            document.getElementById("input4").value = result;
+        }
+    }
     function appendNumber(number) {
-        currentInput += number;
-        document.getElementById('inputField').value = currentInput;
+        // 入力フィールドに数字を追加
+        let inputField1 = document.getElementById("input1");
+        let inputField3 = document.getElementById("input3");
+        // 最初に数字が入力されていない場合、input1 に数字を追加
+        if (inputField1.value === '') {
+            inputField1.value = number;
+        } else if (inputField3.value === '') {
+            inputField3.value = number;
+        }
     }
     function appendOperator(operator) {
-        currentInput += ' ' + operator + ' ';
-        document.getElementById('inputField').value = currentInput;
+        // 演算子を入力フィールドに追加
+        let inputField1 = document.getElementById("input1");
+        let inputField2 = document.getElementById("input2");
+        // 数字が入っている場合に演算子を追加
+        if (inputField1.value !== '' && inputField2.value === '') {
+            inputField2.value = operator;
+        }
     }
     function clearInput() {
-        currentInput = '';
-        document.getElementById('inputField').value = '0';
+        // 入力フィールドをクリア
+        document.getElementById("input1").value = '';
+        document.getElementById("input2").value = '';
+        document.getElementById("input3").value = '';
+        document.getElementById("input4").value = '';
     }
     function calculateResult() {
-        try {
-            const result = eval(currentInput);
-            document.getElementById('inputField').value = result;
-            currentInput = result.toString();
-        } catch (e) {
-            document.getElementById('inputField').value = 'エラー';
-            currentInput = '';
+        const input1 = document.getElementById("input1").value;
+        const input2 = document.getElementById("input2").value;
+        const input3 = document.getElementById("input3").value;
+        // 入力が数字と演算子の形式の場合に計算
+        if (input1 && input2 && input3) {
+            let num1 = parseFloat(input1);
+            let num2 = parseFloat(input3);
+            let result;
+            switch(input2) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = 'エラー';
+            }
+            document.getElementById("input4").value = result;
         }
     }
 </script>
